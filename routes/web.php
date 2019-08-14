@@ -25,3 +25,6 @@ Route::get('thread/list/{id}','ForumController@show');
 Route::get('newtopic/{id}','TopicController@create');
 Route::post('create/topic','TopicController@store');
 Route::get('/t/{topic}','TopicController@show');
+//replyController
+Route::post('/reply/store','ReplyController@store');
+Route::get('getreply/{id}','ReplyController@getreply');

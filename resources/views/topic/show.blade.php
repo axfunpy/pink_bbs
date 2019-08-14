@@ -11,7 +11,9 @@
         display: inline-block;
         min-width: 18%;
     }
-     
+     .read{
+     	line-height: 30px;
+     }
     .image1 {background-position: 0 0;}
     .image2 {background-position: -46px 0;}
     .image6 {background-position: -96px 0;}
@@ -54,7 +56,42 @@
 	</tbody>
 </table>
 <div align="center"><hr width="800" color="#99CC00" size="1"></div>
-<div align="center" style="margin-top:120px;">发表新回应-#{{$topic->id}}</div>
+<table width="800" align="center" cellspacing="0">
+	<tbody>
+		@foreach($reply as $rlist)
+		<tr class="comment_{{$rlist->id}}">
+			<td colspan="2">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr><td width="400"><div class="image_pic image{{$rlist->bbsbigimage}}" style="display: inline-block;"></div></td></tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr class="reply_{{$rlist->id}}">
+			<td colspan="2">
+				 <table width="760" border="0" cellpadding="0" cellspacing="0" style="table-layout:fixed;word-wrap:break-word;">
+				 	<tbody><tr>
+				 		 <td class="read">
+				 		 	<div style="max-height:900px;overflow: hidden;text-overflow: ellipsis">
+				 		 		{!! $rlist->content !!}
+				 		 	</div>
+				 		 </td>
+				 	</tr>
+				 </tbody>
+				 </table>
+			</td>
+		</tr>
+		<tr><td style="color:#99CC00;">№{{$rlist->id}}&nbsp;☆☆☆<font color=#000>{{$rlist->name}}|</font><font color=gray>{{Str::limit(md5($rlist->user_id.$topic->id),8,'')}}</font>于&nbsp;<font color=#000>{{$rlist->created_at}}&nbsp;留言</font>☆☆☆<span style="float:right;"><a href="javascript:;" Onclick="quotereply({{$rlist->id}},'{{Str::limit(md5($rlist->user_id.$topic->id),8,'')}}')">引用</a></span></td></tr>
+		<tr><td colspan="2"><div align="center"><hr width="100%" color="#99CC00" size="1"></div></td></tr>
+		@endforeach
+	</tbody>
+</table>
+<div align="center">{{$reply->links('vendor.pagination.default')}}</div>
+<form method="POST" action="/reply/store">
+	{{csrf_field()}}
+	<input type="hidden" name="topic_id" value="{{$topic->id}}" />
+<div align="center" style="margin-top:120px;">发表新回应<span id="status"></span></div>
 <table id="postform" border="0" align="center">
 	<tr>
 		<td>
@@ -77,8 +114,9 @@
                     <tr> 
                     <td width="18%" valign="top">内容：</td>
                     <td width="82%">
-                                                    <textarea name="content" rows="15" style="width:426px;"></textarea>
-
+                                                    <textarea name="content" rows="15" style="width:426px;" ></textarea>
+<input type="hidden" value="" name="author" id="author" />
+<input type="hidden" value="" name="quotecontent" id="content" />
                                                 <br><font size="-1" color="red">请注意,本站讨论话题敏感，为了防止恶意带节奏，我们将会在您的马甲后面增加小尾巴。</font>
                     </td>
                 </tr>
@@ -94,4 +132,20 @@
 		</td>
 	</tr>
 </table>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function quotereply(id,user)
+	{
+		$.ajax({
+			'url' : '/getreply/'+id,
+			'type': 'get',
+			success:function(data){
+				$("#content").val('<font color=gray>'+data.data.content+'</font><br/>');
+				$("#author").val("<font color=gray>№"+data.data.id+"&nbsp;☆☆☆"+data.data.name+"|"+user+"于"+data.data.created_at+"&nbsp;留言☆☆☆<br/></font>");
+				window.scrollTo(0, document.documentElement.scrollHeight-document.documentElement.clientHeight);
+				$("#status").text("-您正在回应>>№."+id);
+			}
+		})
+	}
+</script>
 @endsection

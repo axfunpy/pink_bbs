@@ -51,6 +51,7 @@ class TopicController extends Controller
     }
     public function show(Topic $topic)
     {
-        return view('topic.show')->with('topic',$topic);
+        $reply = Topic::find($topic->id)->replys()->paginate(50);
+        return view('topic.show')->with('topic',$topic)->with('reply',$reply);
     }
 }

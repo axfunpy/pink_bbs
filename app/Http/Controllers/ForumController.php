@@ -23,7 +23,7 @@ class ForumController extends Controller
     	{
     		if($_GET['user_token'] == $request->cookie('binggan') && $_GET['user_token'] != "")
     		{
-    		$list = Forum::find($id)->topics()->paginate(30);
+    		$list = Forum::find($id)->topics()->orderby('top','desc')->orderby('updated_at','desc')->paginate(30);
     		return view('forum.list')->with('list',$list)->with('forumid',$id);
     		}else
     		{
