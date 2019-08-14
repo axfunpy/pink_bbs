@@ -51,7 +51,7 @@ class TopicController extends Controller
     }
     public function show(Topic $topic)
     {
-        $reply = Topic::find($topic->id)->orderby('id','asc')->replys()->paginate(50);
+        $reply = Topic::find($topic->id)->replys()->orderby('id')->paginate(50);
         return view('topic.show')->with('topic',$topic)->with('reply',$reply);
     }
 }
