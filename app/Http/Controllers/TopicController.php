@@ -7,6 +7,10 @@ use App\Topic;
 class TopicController extends Controller
 {
     //
+     public function __construct()
+    {
+      $this->middleware('checkid');
+    }
     public function create(Request $request,$id)
     {
     	if(!$request->cookie('binggan'))
