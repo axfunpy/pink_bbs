@@ -10,10 +10,12 @@ class ForumController extends Controller
     //
     public function index()
     {
-    	$forum = new Forum;
-    	$list = Cache::remember('board', 24*80*3600, function () {
+    	//$forum = new Forum;
+    	/*$list = Cache::remember('board', 24*80*3600, function () {
     return forum::all();
 });
+*/
+$list = Forum::all();
     
     	return view('forum.index')->with('list',$list);
     }
@@ -35,4 +37,5 @@ class ForumController extends Controller
     		return "抱歉，参数不完全";
     	}
     }
+
 }
