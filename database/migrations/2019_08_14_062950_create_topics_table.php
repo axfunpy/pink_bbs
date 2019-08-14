@@ -15,6 +15,14 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('forum_id');
+            $table->string('title');
+            $table->text('content');
+            $table->boolean('status');
+            $table->string('user_id');
+            $table->string('user_ip');
+            $table->integer('reply_count');
+            $table->boolean('top');
             $table->timestamps();
         });
     }

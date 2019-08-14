@@ -21,3 +21,6 @@ Route::get('get_user_token','HomeController@get_user_token');
 //forumController
 Route::get('/','ForumController@index');
 Route::get('thread/list/{id}','ForumController@show');
+//topiccontroller
+Route::get('newtopic/{id}','TopicController@create');
+Route::post('create/topic','TopicController@store');

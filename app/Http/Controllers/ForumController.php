@@ -21,9 +21,10 @@ class ForumController extends Controller
     {
     	if(isset($_GET['user_token']))
     	{
-    		if($_GET['user_token'] == $request->cookie('binggan'))
+    		if($_GET['user_token'] == $request->cookie('binggan') && $_GET['user_token'] != "")
     		{
-    			return "success";
+    		$list = Forum::find($id)->topics()->paginate(30);
+    		return view('forum.list')->with('list',$list)->with('forumid',$id);
     		}else
     		{
     			return redirect('/guest');
