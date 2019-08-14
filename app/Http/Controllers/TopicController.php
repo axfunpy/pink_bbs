@@ -49,4 +49,8 @@ class TopicController extends Controller
             return redirect('/thread/list/'.$request->input("fid").'?user_token='.$request->cookie("binggan"));
         }
     }
+    public function show(Topic $topic)
+    {
+        return view('topic.show')->with('topic',$topic);
+    }
 }
