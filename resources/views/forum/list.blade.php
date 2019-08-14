@@ -3,7 +3,7 @@
 <style>
 .msglink{margin-top:5px;margin-bottom:5px;}
 </style>
-<div class="msglink"><a href="/newtopic/{{$forumid}}">发布新主题</a>&nbsp;</div>
+<div class="msglink"><a href="/newtopic/{{$forumid}}">发布新主题</a>&nbsp;&nbsp;<a href="/">返回首页</a></div>
 <table id='msglist' width="800" border="0" align="center" cellpadding="0" cellspacing="1"  bgcolor="#999933">
             <tr align="center"  bgcolor="#E8F3FF">
                 <td width="32" height="32" valign="middle"><font size="-1">类别</font></td>
