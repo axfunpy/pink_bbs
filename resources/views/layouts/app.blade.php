@@ -2,79 +2,112 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+<style type="text/css">
+a{
+color: #0000FF;
+text-decoration: none;
+}
+ a:link {
+color: #0000FF;
+text-decoration: none;
+}
+a:visited {
+ color: #0000FF;
+text-decoration: none;
+ }
+ a:hover {
+color: #FF0000;
+text-decoration: none;
+}
+.container{
+    width:800px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+body{
+    background:#FFE7F7;
+    margin:0;
+}
+.footer{
+    text-align:center;
+    color:blue;
+    font-size:12px;
+    margin-top:30px;
+}
+.width_5 {
+        width: 5px;
+    }
+    .width_300 {
+        width: 300px;
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    }
+    .width_800 {
+        width: 800px;
+    }
+    .width_468 {
+        width: 468px;
+    }
+    @media screen and (max-width: 800px) {
+        .width_800 {
+            width: 100%;
+        }
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        .width_468 {
+            width: 60%;
+        }
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        .width_300 {
+            width: 40%;
+        }
+
+    }
+</style>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+    <table class="width_800" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#999999">
+    <tbody><tr align="right" bgcolor="#FEDAEE">
+        <td colspan="5" bgcolor="#FCE0EB"><a href="/login">登入系统</a></font></td>
+    </tr>
+    <tr bgcolor="#666666">
+        <td height="1" colspan="5"></td>
+    </tr>
+    <tr bgcolor="#F9CCDE">
+        <td height="5"></td>
+        <td></td>
+        <td colspan="2"></td>
+        <td class="width_5"></td>
+    </tr>
+    <tr bgcolor="#F9CCDE">
+        <td class="width_5"></td>
+        <td class="width_300">
+           =w=
+        </td>
+        <td class="width_468" align="right" colspan="2">
+            <!-- 谷歌新广告：论坛顶部频道页通发(编辑)---->
+            <div style="width:100%;height:60px;">
+              请各位注意不要在本站公开放出我们的网站地址，否则我们随时可能关站删库跑路一条龙服务
+        </td>
+        <td class="width_5"></td>
+    </tr>
+    <tr bgcolor="#F9CCDE">
+        <td height="5"></td>
+        <td></td>
+        <td colspan="2"></td>
+        <td></td>
+    </tr>
+</tbody></table>
+ <div class="container">
+@yield('content')
+<div class="footer">
+佛系种花嗷
     </div>
+ </div> 
 </body>
 </html>
