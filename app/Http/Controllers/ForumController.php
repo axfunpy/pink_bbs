@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Forum;
 use Cache;
+use DB;
 class ForumController extends Controller
 {
     //
@@ -37,5 +38,11 @@ $list = Forum::all();
     		return "抱歉，参数不完全";
     	}
     }
-
+public function add_forum(){
+     DB::table('forums')->insert([
+            'name' => '种花区',
+            'content' => '来一起种花吧！',
+            'admin_name' => '花农N号',
+        ]);
+}
 }
